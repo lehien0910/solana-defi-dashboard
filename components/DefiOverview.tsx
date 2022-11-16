@@ -23,13 +23,13 @@ export default function DefiOverview({ data }: any) {
   }, [data])
 
   return (
-    <div className={styles.overview}>
+    <div className={styles.overview + " " + styles.feature}>
       <div className={styles.overview_item}>
         <div className={styles.overview_item_title}>
           Platforms
         </div>
         <div className={styles.overview_item_content}>
-          {data?.data?.length || "__"}
+          {data?.length || "__"}
         </div>
       </div>
 

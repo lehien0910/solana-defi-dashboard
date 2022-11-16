@@ -5,6 +5,7 @@ import useSWR from 'swr'
 
 import styles from '../styles/dashboard.module.css'
 import DefiOverview from '../components/DefiOverview'
+import DefiRank from '../components/DefiRank'
 
 const fetchDexData = () => fetch('https://api.solscan.io/amm/all').then((res) => res.json())
 
@@ -27,6 +28,8 @@ export default function Dashboard() {
         </div>
 
         <DefiOverview data={dexData?.data || []} />
+
+        <DefiRank data={dexData?.data || []} />
       </main>
 
       <footer className={styles.footer}>

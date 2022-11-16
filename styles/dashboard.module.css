@@ -8,11 +8,6 @@
   min-height: calc(100vh - 50px);
 }
 
-.header {
-  padding: 1.14rem 0;
-  margin-bottom: 1.14rem;
-}
-
 .footer {
   height: 50px;
   line-height: 50px;
@@ -30,6 +25,12 @@
   margin: 0;
   line-height: 1.15;
   font-size: 2rem;
+}
+
+.header,
+.feature {
+  padding: 1.14rem 0;
+  margin-bottom: 1.14rem;
 }
 
 .overview {

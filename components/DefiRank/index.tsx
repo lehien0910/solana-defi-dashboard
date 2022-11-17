@@ -5,17 +5,18 @@ import styles from '../styles/dashboard.module.css'
 import { columns } from './tableConfig'
 
 export default function DefiRank({ data = [] }: any) {
+
   const parsedData = useMemo(() => {
-    data.map((item: any, idx: number) => {
+    return data.map((item: any, idx: number) => {
       item.no = idx + 1
       
       return item
     })
-  }, data)
+  }, [data])
 
   return (
     <div>
-      <Table dataSource={data} columns={columns} pagination={false} />
+      <Table dataSource={parsedData} columns={columns} pagination={false} />
     </div>
   )
 }

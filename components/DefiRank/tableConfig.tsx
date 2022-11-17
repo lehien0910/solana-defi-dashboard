@@ -20,6 +20,8 @@ export const columns = [
     dataIndex: 'totalVolume24h',
     key: 'totalVolume24h',
     align: 'right' as const,
+    defaultSortOrder: 'descend' as const,
+    sorter: (a: any, b: any) => a.totalVolume24h - b.totalVolume24h,
     render: (value: number) => {
       if (!value) return '__'
 
@@ -31,6 +33,7 @@ export const columns = [
     dataIndex: 'totalLiquidity',
     key: 'totalLiquidity',
     align: 'right' as const,
+    sorter: (a: any, b: any) => a.totalLiquidity - b.totalLiquidity,
     render: (value: number) => {
       if (!value) return '__'
 
@@ -39,9 +42,10 @@ export const columns = [
   },
   {
     title: '24h Txs',
-    dataIndex: 'totalVolume24h',
-    key: 'totalVolume24h',
+    dataIndex: 'totalTxs24h',
+    key: 'totalTxs24h',
     align: 'right' as const,
+    sorter: (a: any, b: any) => a.totalTxs24h - b.totalTxs24h,
     render: (value: number) => {
       if (!value) return '__'
 

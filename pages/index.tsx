@@ -21,7 +21,7 @@ export default function Dashboard() {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.header}>
+        <div className={styles.feature_header}>
           <h1 className={styles.title}>
             Defi Dashboard
           </h1>

@@ -1,8 +1,9 @@
 import { useMemo } from 'react'
 import { Table } from 'antd'
 
-import styles from '../styles/dashboard.module.css'
+import styles from '../../styles/dashboard.module.css'
 import { columns } from './tableConfig'
+import PieChart from './PieChart'
 
 export default function DefiRank({ data = [] }: any) {
 
@@ -19,8 +20,18 @@ export default function DefiRank({ data = [] }: any) {
   }, [data])
 
   return (
-    <div>
-      <Table dataSource={parsedData} columns={columns} pagination={false} />
+    <div className={styles.feature}>
+      <div className={styles.feature_header}>
+        <h2 className={styles.feature_title}>Ranking</h2>
+      </div>
+      <div className={styles.ranking}>
+        <div className={styles.ranking_table_wrapper}>
+          <Table dataSource={parsedData} columns={columns} pagination={false} />
+        </div>
+        <div className={styles.ranking_chart_wrapper}>  
+          <PieChart dataSource={parsedData} />
+        </div>
+      </div>
     </div>
   )
 }

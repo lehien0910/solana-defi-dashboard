@@ -27,10 +27,18 @@
   font-size: 2rem;
 }
 
-.header,
 .feature {
-  padding: 1.14rem 0;
+  margin-bottom: 2rem;
+}
+
+.feature_header {
   margin-bottom: 1.14rem;
+}
+
+.feature_title {
+  margin: 0;
+  line-height: 1;
+  font-size: 1.7rem;
 }
 
 .overview {
@@ -56,4 +64,18 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
+}
+
+.ranking {
+  display: flex;
+  flex-direction: row;
+  gap: 1.14rem;
+}
+
+.ranking_table_wrapper {
+  width: 60%;
+}
+
+.ranking_chart_wrapper {
+  width: 40%;
 }

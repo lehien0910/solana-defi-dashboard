@@ -45,6 +45,12 @@ export default function StackedChart({ dataSource }: StackedChartProps) {
 
       seriesData.push(seriesItemData)
     }
+
+    seriesData.sort((a: any, b: any) => {
+      const lastIndex = b.data.length - 1
+      
+      return b.data[lastIndex] - a.data[lastIndex]
+    })
     
     return { xAxisData, seriesData }  
   }, [type, dataSource])

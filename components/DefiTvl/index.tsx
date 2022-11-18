@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import styles from '../../styles/dashboard.module.css'
-import StackedChart from './StackedChart'
+import TvlStackedChart from './TvlStackedChart'
 import TvlPieChart from './TvlPieChart'
 
 export default function DefiTvl({ data }: any) {
@@ -47,7 +47,7 @@ export default function DefiTvl({ data }: any) {
       <div className={styles.volume}>
         <div className={styles.volume_left_wrapper}>
 
-          <StackedChart dataSource={dataSource} />
+          <TvlStackedChart dataSource={dataSource} />
         </div>
         <div className={styles.volume_right_wrapper}>
           <TvlPieChart data={dataSource} />

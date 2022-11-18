@@ -1,15 +1,16 @@
 import { useMemo, useState } from 'react'
 import ReactECharts from 'echarts-for-react'
 import { Radio } from 'antd';
+import StackedChart from '../common/StackedChart';
 
 type StackedChartProps = {
   dataSource: any;
 }
 
-export default function StackedChart({ dataSource }: StackedChartProps) {
+export default function TvlStackedChart({ dataSource }: StackedChartProps) {
   const [type, setType] = useState<'bar' | 'area'>('area')
 
-  const { xAxisData, seriesData } = useMemo(() => {
+  const parsedData = useMemo(() => {
     const xAxisData = Object.values(dataSource)[0]?.reduce((agg: any, curr: any) => {
       agg = [...agg, curr.unixTime]
       return agg
@@ -55,45 +56,7 @@ export default function StackedChart({ dataSource }: StackedChartProps) {
     return { xAxisData, seriesData }  
   }, [type, dataSource])
 
-  const options = useMemo(() => {
-    return {
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
-        }
-      },
-      legend: { },
-      grid: {
-        top: '12%',
-        left: '0',
-        right: '0',
-        bottom: '5%',
-        containLabel: true
-      },
-      xAxis: [
-        {
-          type: 'category',
-          boundaryGap: false,
-          data: xAxisData,
-        }
-      ],
-      yAxis: [
-        {
-          type: 'value'
-        }
-      ],
-      series: seriesData,
-    }
-  }, [seriesData, xAxisData])
-
   return (
-    <div>
-      <Radio.Group onChange={e => setType(e.target.value)}>
-        <Radio.Button value="area">Area</Radio.Button>
-        <Radio.Button value="bar">Bar</Radio.Button>
-      </Radio.Group>
-      <ReactECharts option={options} opts={{ height: 350 }} />
-    </div>
+    <StackedChart dataSource={parsedData} setType={setType} />
   )
 }

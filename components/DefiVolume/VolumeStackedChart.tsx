@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Radio } from 'antd';
-import StackedChart from '../common/StackedChart';
+import { StackedChart } from '../common';
 
 type StackedChartProps = {
   dataSource: any;

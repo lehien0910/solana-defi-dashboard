@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import PieChart from '../common/PieChart'
+import { PieChart } from '../common'
 
 export default function VolumePieChart({ data }: any) {
   const parsedData = useMemo(() => {    

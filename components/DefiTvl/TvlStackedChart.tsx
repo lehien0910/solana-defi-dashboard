@@ -1,14 +1,12 @@
 import { useMemo, useState } from 'react'
-import ReactECharts from 'echarts-for-react'
-import { Radio } from 'antd';
-import StackedChart from '../common/StackedChart';
+import { StackedChart } from '../common';
 
 type StackedChartProps = {
   dataSource: any;
 }
 
 export default function TvlStackedChart({ dataSource }: StackedChartProps) {
-  const [type, setType] = useState<'bar' | 'area'>('area')
+  const [type, setType] = useState<'bar' | 'area'>('bar')
 
   const parsedData = useMemo(() => {
     const xAxisData = Object.values(dataSource)[0]?.reduce((agg: any, curr: any) => {

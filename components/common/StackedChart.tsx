@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 import { Radio } from 'antd';
 
@@ -27,7 +27,7 @@ export default function StackedChart({ dataSource, setType }: StackedChartProps)
       xAxis: [
         {
           type: 'category',
-          boundaryGap: false,
+          boundaryGap: true,
           data: dataSource.xAxisData,
         }
       ],

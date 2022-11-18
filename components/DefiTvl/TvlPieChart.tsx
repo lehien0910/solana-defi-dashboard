@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import PieChart from '../common/PieChart'
+import { PieChart } from '../common'
 
 export default function TvlPieChart({ data }: any) {
   const parsedData = useMemo(() => {    

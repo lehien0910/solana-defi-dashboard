@@ -3,21 +3,6 @@ import ReactECharts from 'echarts-for-react'
 
 export default function PieChart({ dataSource }: any) {
 
-  const parsedData = useMemo(() => {    
-    return dataSource.reduce((agg: any, curr: any) => {      
-      agg.legendData = [...agg.legendData, curr.source]
-      agg.seriesData = [
-        ...agg.seriesData,
-        {
-          name: curr.source,
-          value: curr.totalVolume24h
-        }
-      ]
-
-      return agg
-    }, {legendData: [], seriesData: []})
-  }, [dataSource])
-
   const options = useMemo(() => {
     return {
       tooltip: {
@@ -30,7 +15,7 @@ export default function PieChart({ dataSource }: any) {
         right: 0,
         top: 30,
         bottom: 30,
-        data: parsedData.legendData
+        data: dataSource.legendData
       },
       series: [
         {
@@ -38,7 +23,7 @@ export default function PieChart({ dataSource }: any) {
           type: 'pie',
           radius: '90%',
           center: ['40%', '50%'],
-          data: parsedData.seriesData,
+          data: dataSource.seriesData,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -55,7 +40,7 @@ export default function PieChart({ dataSource }: any) {
         }
       ]
     }
-  },[parsedData])
+  },[dataSource])
 
   return (
     <ReactECharts option={options} />

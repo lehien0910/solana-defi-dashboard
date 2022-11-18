@@ -3,7 +3,7 @@ import { Table } from 'antd'
 
 import styles from '../../styles/dashboard.module.css'
 import { columns } from './tableConfig'
-import PieChart from './PieChart'
+import RankPieChart from './RankPieChart'
 
 export default function DefiRank({ data = [] }: any) {
 
@@ -30,7 +30,7 @@ export default function DefiRank({ data = [] }: any) {
           <Table dataSource={parsedData} columns={columns} pagination={false} />
         </div>
         <div className={styles.ranking_right_wrapper}>  
-          <PieChart dataSource={parsedData} />
+          <RankPieChart data={parsedData} />
         </div>
       </div>
     </div>

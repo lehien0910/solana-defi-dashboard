@@ -6,11 +6,14 @@ import useSWR from 'swr'
 import styles from '../styles/dashboard.module.css'
 import DefiOverview from '../components/DefiOverview'
 import DefiRank from '../components/DefiRank'
+import DefiVolume from '../components/DefiVolume'
 
 const fetchDexData = () => fetch('https://api.solscan.io/amm/all').then((res) => res.json())
+const fetchChartData = () => fetch('https://api.solscan.io/amm/chart?source=all&type=1D&chart=total_volume24h&time_from=1668068025.518&time_to=1668672825.518').then((res) => res.json())
 
 export default function Dashboard() {
   const { data: dexData } = useSWR('fetchDexData', fetchDexData)
+  const { data: chartData } = useSWR('fetchChartData', fetchChartData)  
 
   return (
     <div className={styles.container}>
@@ -30,6 +33,8 @@ export default function Dashboard() {
         <DefiOverview data={dexData?.data || []} />
 
         <DefiRank data={dexData?.data || []} />
+
+        <DefiVolume data={chartData?.data?.items || {}} />
       </main>
 
       <footer className={styles.footer}>

@@ -66,16 +66,21 @@
   line-height: 1.2;
 }
 
-.ranking {
+.ranking,
+.volume {
   display: flex;
   flex-direction: row;
   gap: 1.14rem;
 }
 
-.ranking_table_wrapper {
+.volume_left_wrapper,
+.ranking_left_wrapper {
   width: 60%;
+  height: 400px;
 }
 
-.ranking_chart_wrapper {
+.volume_right_wrapper,
+.ranking_right_wrapper {
   width: 40%;
+  height: 400px;
 }

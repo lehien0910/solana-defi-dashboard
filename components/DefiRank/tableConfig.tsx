@@ -1,10 +1,10 @@
-import { abbrNumber } from "../../utils";
+import { abbrNumber, formatNumber } from "../../utils";
 
 export const columns = [
   {
     title: '#',
-    dataIndex: 'no',
-    key: 'no',
+    dataIndex: 'key',
+    key: 'key',
     align: 'center' as const,
     width: 60,
   },
@@ -50,6 +50,18 @@ export const columns = [
       if (!value) return '__'
 
       return <div>{abbrNumber(value)}</div>
+    }
+  },
+  {
+    title: 'Markets',
+    dataIndex: 'numberPairs',
+    key: 'numberPairs',
+    align: 'right' as const,
+    sorter: (a: any, b: any) => a.numberPairs - b.numberPairs,
+    render: (value: number) => {
+      if (!value) return '__'
+
+      return <div>{formatNumber(value)}</div>
     }
   },
 ]

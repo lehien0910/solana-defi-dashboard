@@ -49,3 +49,17 @@ export const abbrNumber = (num: number) => {
       return formatNumber(num, 2)?.toString()
   }
 }
+
+export const getPlatformName = (value: string) => {
+
+  switch (value) {
+    case 'whirlpool':
+      return 'Orca'
+  
+    case 'orca':
+      return 'Orca Legacy'
+
+    default:
+      return value
+  }
+}

@@ -17,7 +17,7 @@ export default function DefiRank({ data = [] }: any) {
     })
 
     return newData
-  }, [data])  
+  }, [data])
 
   return (
     <div className={styles.feature}>

@@ -1,4 +1,7 @@
-import { abbrNumber, formatNumber } from "../../utils";
+import { Space } from "antd";
+
+import { abbrNumber, formatNumber, getPlatformName } from "../../utils";
+import UpDown from "../common/UpDown";
 
 export const columns = [
   {
@@ -6,26 +9,37 @@ export const columns = [
     dataIndex: 'key',
     key: 'key',
     align: 'center' as const,
-    width: 60,
+    width: 50,
   },
   {
     title: 'Platform',
     dataIndex: 'source',
     key: 'source',
-    width: 160,
+    width: 130,
     ellipsis: true,
+    render: (value: string, record: any) => {
+      if (!value) return '__'
+
+      return (
+        <Space>
+          <img src={record.icon} alt="" width={20} height={20} />
+          <span style={{textTransform: 'capitalize'}}>{getPlatformName(value)}</span>
+        </Space>
+      )
+    }
   },
   {
     title: '24h Volume',
     dataIndex: 'totalVolume24h',
     key: 'totalVolume24h',
     align: 'right' as const,
+    width: 150,
     defaultSortOrder: 'descend' as const,
     sorter: (a: any, b: any) => a.totalVolume24h - b.totalVolume24h,
-    render: (value: number) => {
+    render: (value: number, record: any) => {
       if (!value) return '__'
 
-      return <div>&#36;{abbrNumber(value)}</div>
+      return <div>&#36;{abbrNumber(value)} <UpDown value={record.totalVolume24hChangePercentage24h} /></div>
     }
   },
   {
@@ -33,11 +47,12 @@ export const columns = [
     dataIndex: 'totalLiquidity',
     key: 'totalLiquidity',
     align: 'right' as const,
+    width: 150,
     sorter: (a: any, b: any) => a.totalLiquidity - b.totalLiquidity,
-    render: (value: number) => {
+    render: (value: number, record: any) => {
       if (!value) return '__'
 
-      return <div>&#36;{abbrNumber(value)}</div>
+      return <div>&#36;{abbrNumber(value)} <UpDown value={record.totalLiquidityChangePercentage24h} /></div>
     }
   },
   {
@@ -45,11 +60,12 @@ export const columns = [
     dataIndex: 'totalTxs24h',
     key: 'totalTxs24h',
     align: 'right' as const,
+    width: 150,
     sorter: (a: any, b: any) => a.totalTxs24h - b.totalTxs24h,
-    render: (value: number) => {
+    render: (value: number, record: any) => {
       if (!value) return '__'
 
-      return <div>{abbrNumber(value)}</div>
+      return <div>{abbrNumber(value)} <UpDown value={record.totalTxsChangePercentage24h} /></div>
     }
   },
   {
@@ -61,7 +77,7 @@ export const columns = [
     render: (value: number) => {
       if (!value) return '__'
 
-      return <div>{formatNumber(value)}</div>
+      return <div>{formatNumber(value, 0)}</div>
     }
   },
 ]

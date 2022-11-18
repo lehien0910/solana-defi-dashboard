@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import styles from '../../styles/dashboard.module.css'
 import StackedChart from './StackedChart'
+import VolumePieChart from './VolumePieChart'
 
 export default function DefiVolume({ data }: any) {
   // format source data to same length
@@ -49,7 +50,7 @@ export default function DefiVolume({ data }: any) {
           <StackedChart dataSource={dataSource} />
         </div>
         <div className={styles.volume_right_wrapper}>
-          right
+          <VolumePieChart data={dataSource} />
         </div>
       </div>
     </div>

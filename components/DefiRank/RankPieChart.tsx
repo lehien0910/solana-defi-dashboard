@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import ReactECharts from 'echarts-for-react'
 import PieChart from '../common/PieChart'
 
 export default function RankPieChart({ data }: any) {

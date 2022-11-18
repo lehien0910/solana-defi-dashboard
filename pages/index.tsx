@@ -7,13 +7,22 @@ import styles from '../styles/dashboard.module.css'
 import DefiOverview from '../components/DefiOverview'
 import DefiRank from '../components/DefiRank'
 import DefiVolume from '../components/DefiVolume'
+import DefiTvl from '../components/DefiTvl'
+
+const to = new Date().getTime() / 1000
+const from = to - 7 * 24 * 60 * 60
+
+console.log(from, to);
+
 
 const fetchDexData = () => fetch('https://api.solscan.io/amm/all').then((res) => res.json())
-const fetchChartData = () => fetch('https://api.solscan.io/amm/chart?source=all&type=1D&chart=total_volume24h&time_from=1668068025.518&time_to=1668672825.518').then((res) => res.json())
+const fetchVolumeChartData = () => fetch(`https://api.solscan.io/amm/chart?source=all&type=1D&chart=total_volume24h&time_from=${from}&time_to=${to}`).then((res) => res.json())
+const fetchTvlChartData = () => fetch(`https://api.solscan.io/amm/chart?source=all&type=1D&chart=total_tvl&time_from=${from}&time_to=${to}`).then((res) => res.json())
 
 export default function Dashboard() {
   const { data: dexData } = useSWR('fetchDexData', fetchDexData)
-  const { data: chartData } = useSWR('fetchChartData', fetchChartData)  
+  const { data: chartData } = useSWR('fetchVolumeChartData', fetchVolumeChartData)
+  const { data: tvlData } = useSWR('fetchTvlChartData', fetchTvlChartData)
 
   return (
     <div className={styles.container}>
@@ -35,6 +44,8 @@ export default function Dashboard() {
         <DefiRank data={dexData?.data || []} />
 
         <DefiVolume data={chartData?.data?.items || {}} />
+
+        <DefiTvl data={tvlData?.data?.items || {}} />
       </main>
 
       <footer className={styles.footer}>

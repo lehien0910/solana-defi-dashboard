@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import styles from '../../styles/dashboard.module.css'
 import StackedChart from './StackedChart'
-import VolumePieChart from './VolumePieChart'
+import TvlPieChart from './TvlPieChart'
 
-export default function DefiVolume({ data }: any) {
+export default function DefiTvl({ data }: any) {
   // format source data to same length
   const dataSource = useMemo(() => {
     if (Object.keys(data).length === 0) return data
@@ -41,7 +41,7 @@ export default function DefiVolume({ data }: any) {
   return (
     <div className={styles.feature}>
       <div className={styles.feature_header}>
-        <h2 className={styles.feature_title}>Volume</h2>
+        <h2 className={styles.feature_title}>Tvl</h2>
       </div>
 
       <div className={styles.volume}>
@@ -50,7 +50,7 @@ export default function DefiVolume({ data }: any) {
           <StackedChart dataSource={dataSource} />
         </div>
         <div className={styles.volume_right_wrapper}>
-          <VolumePieChart data={dataSource} />
+          <TvlPieChart data={dataSource} />
         </div>
       </div>
     </div>

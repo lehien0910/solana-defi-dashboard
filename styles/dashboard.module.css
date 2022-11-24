@@ -85,3 +85,9 @@
   width: 40%;
   height: 400px;
 }
+
+.pie_chart_title {
+  font-size: 1.14rem;
+  font-weight: 700;
+  text-align: center;
+}

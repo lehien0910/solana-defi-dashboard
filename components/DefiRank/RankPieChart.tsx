@@ -1,7 +1,15 @@
 import { useMemo } from 'react'
 import { PieChart } from '../common'
 
-export default function RankPieChart({ data }: any) {
+type RankPieChartProps = {
+  data: any;
+  fieldInfo: {
+    value: string,
+    title: string,
+  }
+}
+
+export default function RankPieChart({ data, fieldInfo }: RankPieChartProps) {
 
   const parsedData = useMemo(() => {    
     return data.reduce((agg: any, curr: any) => {      
@@ -10,15 +18,15 @@ export default function RankPieChart({ data }: any) {
         ...agg.seriesData,
         {
           name: curr.source,
-          value: curr.totalVolume24h
+          value: curr[fieldInfo.value]
         }
       ]
 
       return agg
     }, {legendData: [], seriesData: []})
-  }, [data])
+  }, [data, fieldInfo.value])
 
   return (
-    <PieChart dataSource={parsedData} name="Ranking" />
+    <PieChart dataSource={parsedData} name={fieldInfo.title} />
   )
 }

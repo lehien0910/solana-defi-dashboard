@@ -43,19 +43,6 @@ export const columns = [
     }
   },
   {
-    title: 'TVL',
-    dataIndex: 'totalLiquidity',
-    key: 'totalLiquidity',
-    align: 'right' as const,
-    width: 150,
-    sorter: (a: any, b: any) => a.totalLiquidity - b.totalLiquidity,
-    render: (value: number, record: any) => {
-      if (!value) return '__'
-
-      return <div>&#36;{abbrNumber(value)} <UpDown value={record.totalLiquidityChangePercentage24h} /></div>
-    }
-  },
-  {
     title: '24h Txs',
     dataIndex: 'totalTxs24h',
     key: 'totalTxs24h',
@@ -69,7 +56,20 @@ export const columns = [
     }
   },
   {
-    title: 'Markets',
+    title: 'TVL',
+    dataIndex: 'totalLiquidity',
+    key: 'totalLiquidity',
+    align: 'right' as const,
+    width: 150,
+    sorter: (a: any, b: any) => a.totalLiquidity - b.totalLiquidity,
+    render: (value: number, record: any) => {
+      if (!value) return '__'
+
+      return <div>&#36;{abbrNumber(value)} <UpDown value={record.totalLiquidityChangePercentage24h} /></div>
+    }
+  },
+  {
+    title: 'Pools',
     dataIndex: 'numberPairs',
     key: 'numberPairs',
     align: 'right' as const,

@@ -72,7 +72,7 @@ export default function DefiOverview({ data }: any) {
 
       <div className={styles.overview_item}>
         <div className={styles.overview_item_title}>
-          Markets
+          Pools
         </div>
         <div className={styles.overview_item_content}>
           {formatNumber(overviewDexData.numberPairs, 0) || "__"}

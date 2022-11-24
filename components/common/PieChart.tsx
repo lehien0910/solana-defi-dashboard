@@ -1,7 +1,12 @@
 import { useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 
-export default function PieChart({ dataSource }: any) {
+type PieChartProps = {
+  dataSource: any;
+  name: string;
+}
+
+export default function PieChart({ dataSource, name }: PieChartProps) {
 
   const options = useMemo(() => {
     return {
@@ -9,20 +14,20 @@ export default function PieChart({ dataSource }: any) {
         trigger: 'item',
         formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
-      legend: {
-        type: 'scroll',
-        orient: 'vertical',
-        right: 0,
-        top: 30,
-        bottom: 30,
-        data: dataSource.legendData
-      },
+      // legend: {
+      //   type: 'scroll',
+      //   orient: 'vertical',
+      //   right: 0,
+      //   top: 30,
+      //   bottom: 30,
+      //   data: dataSource.legendData
+      // },
       series: [
         {
-          name: '24h Volume',
+          name,
           type: 'pie',
           radius: '90%',
-          center: ['40%', '50%'],
+          center: ['50%', '50%'],
           data: dataSource.seriesData,
           emphasis: {
             itemStyle: {
@@ -31,12 +36,8 @@ export default function PieChart({ dataSource }: any) {
               shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
           },
-          label: {
-            show: false,
-          },
-          labelLine: {
-            show: false
-          },
+          label: {},
+          labelLine: {},
         }
       ]
     }

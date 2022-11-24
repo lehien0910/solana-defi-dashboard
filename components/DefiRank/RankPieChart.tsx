@@ -19,6 +19,6 @@ export default function RankPieChart({ data }: any) {
   }, [data])
 
   return (
-    <PieChart dataSource={parsedData} />
+    <PieChart dataSource={parsedData} name="Ranking" />
   )
 }

@@ -24,6 +24,6 @@ export default function VolumePieChart({ data }: any) {
   }, [data])
 
   return (
-    <PieChart dataSource={parsedData} />
+    <PieChart dataSource={parsedData} name="24h Volume" />
   )
 }

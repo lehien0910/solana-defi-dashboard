@@ -73,6 +73,7 @@ export const columns = [
     dataIndex: 'numberPairs',
     key: 'numberPairs',
     align: 'right' as const,
+    width: 80,
     sorter: (a: any, b: any) => a.numberPairs - b.numberPairs,
     render: (value: number) => {
       if (!value) return '__'

@@ -24,6 +24,6 @@ export default function TvlPieChart({ data }: any) {
   }, [data])
 
   return (
-    <PieChart dataSource={parsedData} />
+    <PieChart dataSource={parsedData} name="Tvl" />
   )
 }

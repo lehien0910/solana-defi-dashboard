@@ -30,7 +30,7 @@ export default function StackedChart({ dataSource, setType }: StackedChartProps)
         {
           type: 'category',
           boundaryGap: true,
-          data: dataSource.xAxisData.map((timestamp: number) => formatTimestamp(timestamp)),
+          data: dataSource.xAxisData?.map((timestamp: number) => formatTimestamp(timestamp)),
         }
       ],
       yAxis: [

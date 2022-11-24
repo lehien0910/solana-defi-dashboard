@@ -2,6 +2,8 @@ import { useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
 import { Radio } from 'antd';
 
+import { formatTimestamp } from '../../utils';
+
 type StackedChartProps = {
   dataSource: any;
   setType: any;
@@ -28,7 +30,7 @@ export default function StackedChart({ dataSource, setType }: StackedChartProps)
         {
           type: 'category',
           boundaryGap: true,
-          data: dataSource.xAxisData,
+          data: dataSource.xAxisData.map((timestamp: number) => formatTimestamp(timestamp)),
         }
       ],
       yAxis: [

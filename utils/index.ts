@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import { format, addMinutes } from 'date-fns'
 
 export const formatNumber = (num: number, precision: number) => {
   if (!num) return num
@@ -30,6 +31,13 @@ export const formatNumber = (num: number, precision: number) => {
   }
 
   return formated
+}
+
+export function formatTimestamp(timestamp: number, pattern = "MM/dd") {
+  if (!timestamp) return null
+
+  const dateLocal = new Date(timestamp * 1000)
+  return format(addMinutes(dateLocal, dateLocal.getTimezoneOffset()), pattern)
 }
 
 export const abbrNumber = (num: number) => {

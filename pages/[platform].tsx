@@ -25,7 +25,7 @@ export default function PlatformDetails() {
   return (
     <Layout>
       <Head>
-        <title>{platform || "Defi Terminal"}</title>
+        <title>{`${getPlatformName(platform)} | Defi Terminal` || 'Defi Terminal'}</title>
         <meta name="description" content="DeFi Terminal" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

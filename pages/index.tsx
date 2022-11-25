@@ -29,12 +29,6 @@ export default function Dashboard() {
       </Head>
 
       <>
-        <div className={styles.feature_header}>
-          <h1 className={styles.title}>
-            Defi Terminal
-          </h1>
-        </div>
-
         <Overview data={platformListResult?.data || []} />
 
         <Ranking data={platformListResult?.data || []} />

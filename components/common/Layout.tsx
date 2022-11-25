@@ -1,16 +1,24 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { Space } from 'antd'
-
-import styles from '../../styles/dashboard.module.css'
 
 export default function Layout({ children }: any) {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
+    <div className="container">
+      <header className="main_header">
+        <div className="main_logo">
+          <div className="main_logo_text"><span className="main_logo_text_highlight">defi</span> terminal</div>
+        </div>
+        <div>
+          <Link href="/">Home</Link>
+        </div>
+      </header>
+
+      <main className="main_content">
         {children}
       </main>
 
-      <footer className={styles.footer}>
+      <footer className="main_footer">
         <a
           href="https://solscan.io/"
           target="_blank"

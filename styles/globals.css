@@ -39,3 +39,49 @@ a {
 .capitalize {
   text-transform: capitalize;
 }
+
+.container {
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.main_header {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.main_logo {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.main_logo_text {
+  font-size: 2rem;
+}
+
+.main_logo_text_highlight {
+  color: #1372d7;
+}
+
+.main_content {
+  min-height: calc(100vh - 110px);
+  padding: 1.8rem 0;
+}
+
+.main_footer {
+  height: 50px;
+  line-height: 50px;
+  border-top: 1px solid #eaeaea;
+}
+
+.main_footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}

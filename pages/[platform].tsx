@@ -17,10 +17,13 @@ export default function PlatformDetails() {
   const { platform } = router.query
   const { data: platformListResult } = useSWR('fetchPlatformList', fetchPlatformList)
 
-  const platformData = useMemo(() => {
-    if (!platform || !platformListResult?.data) return {}
+  const { platformData, filteredPlatformList } = useMemo(() => {
+    if (!platform || !platformListResult?.data) return { platformData: [], filteredPlatformList: [] }
 
-    return platformListResult.data.find((item: any) => item.source?.toLowerCase() === platform)
+    const platformData = platformListResult.data.find((item: any) => item.source?.toLowerCase() === platform)
+    const filteredPlatformList = platformListResult.data.filter((item: any) => item.source?.toLowerCase() !== platform)
+
+    return { platformData, filteredPlatformList }
   }, [platform, platformListResult?.data])
 
   return (
@@ -44,7 +47,7 @@ export default function PlatformDetails() {
           placeholder="Select to compare"
         >
           {
-            platformListResult?.data?.map((item: any, idx: number) => {
+            filteredPlatformList.map((item: any, idx: number) => {
               return (
                 <Option
                   key={idx}

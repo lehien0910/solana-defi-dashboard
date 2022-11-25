@@ -7,7 +7,9 @@ export default function Layout({ children }: any) {
     <div className="container">
       <header className="main_header">
         <div className="main_logo">
-          <div className="main_logo_text"><span className="main_logo_text_highlight">defi</span> terminal</div>
+          <Link href="/">
+            <div className="main_logo_text"><span className="main_logo_text_highlight">defi</span> terminal</div>
+          </Link>
         </div>
         <div>
           <Link href="/">Home</Link>

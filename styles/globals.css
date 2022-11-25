@@ -63,10 +63,11 @@ a {
 
 .main_logo_text {
   font-size: 2rem;
+  color: #323232;
 }
 
 .main_logo_text_highlight {
-  color: #1372d7;
+  color: #1890ff;
 }
 
 .main_content {

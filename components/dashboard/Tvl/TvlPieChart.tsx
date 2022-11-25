@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { PieChart } from '../common'
+import { PieChart } from '../../common'
 
-export default function VolumePieChart({ data }: any) {
+export default function TvlPieChart({ data }: any) {
   const parsedData = useMemo(() => {    
     const aggData: any =  Object.values(data).reduce((agg: any, curr: any) => {      
       const lastIndex = curr.length - 1
@@ -24,6 +24,6 @@ export default function VolumePieChart({ data }: any) {
   }, [data])
 
   return (
-    <PieChart dataSource={parsedData} name="24h Volume" />
+    <PieChart dataSource={parsedData} name="Tvl" />
   )
 }

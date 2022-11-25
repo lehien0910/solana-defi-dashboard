@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Space } from "antd"
 
-import { abbrNumber, formatNumber, getPlatformName } from "../../utils"
-import UpDown from "../common/UpDown"
+import { abbrNumber, formatNumber, getPlatformName } from "../../../utils"
+import UpDown from "../../common/UpDown"
 
 export const columns = [
   {

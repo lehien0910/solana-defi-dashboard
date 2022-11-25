@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Table } from 'antd'
 
-import styles from '../../styles/dashboard.module.css'
+import styles from '../../../styles/dashboard.module.css'
 import { columns } from './tableConfig'
 import RankPieChart from './RankPieChart'
 
@@ -24,7 +24,7 @@ const RANKING_FIELD: any = {
   },
 }
 
-export default function DefiRank({ data = [] }: any) {
+export default function Ranking({ data = [] }: any) {
   const [field, setField] = useState('totalVolume24h')
 
   const parsedData = useMemo(() => {

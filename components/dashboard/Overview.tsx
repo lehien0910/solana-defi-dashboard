@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import styles from '../styles/dashboard.module.css'
-import { abbrNumber, formatNumber } from '../utils'
+import styles from '../../styles/dashboard.module.css'
+import { abbrNumber, formatNumber } from '../../utils'
 
 export default function DefiOverview({ data }: any) {
   const overviewDexData = useMemo(() => {
@@ -39,7 +39,7 @@ export default function DefiOverview({ data }: any) {
           24h Volume
         </div>
         <div className={styles.overview_item_content}>
-          {abbrNumber(overviewDexData.totalVolume24h) || "__"}
+          ${abbrNumber(overviewDexData.totalVolume24h) || "__"}
         </div>
       </div>
 
@@ -48,7 +48,7 @@ export default function DefiOverview({ data }: any) {
           TVL
         </div>
         <div className={styles.overview_item_content}>
-          {abbrNumber(overviewDexData.totalLiquidity) || "__"}
+          ${abbrNumber(overviewDexData.totalLiquidity) || "__"}
         </div>
       </div>
 

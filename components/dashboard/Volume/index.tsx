@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
-import styles from '../../styles/dashboard.module.css'
+import styles from '../../../styles/dashboard.module.css'
 import VolumeStackedChart from './VolumeStackedChart'
 import VolumePieChart from './VolumePieChart'
 
-export default function DefiVolume({ data }: any) {
+export default function Volume({ data }: any) {
   // format source data to same length
   const dataSource = useMemo(() => {
     if (Object.keys(data).length === 0) return data

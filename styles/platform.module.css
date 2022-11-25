@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 2rem;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.select {
+  min-width: 300px;
+}
+
+.select :global(.ant-select-selector) {
+  padding-right: 35px;
+  border-radius: 5px !important;
+  border-width: 3px !important;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.option_title {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.option_sub_title {
+  font-size: .95rem;
+}
+
+.vs {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #838383;
+}
+
+.logo {
+  border-radius: 5px;
+}

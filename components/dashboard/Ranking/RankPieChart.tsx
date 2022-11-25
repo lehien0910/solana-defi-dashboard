@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { PieChart } from '../common'
+import { PieChart } from '../../common'
 
 type RankPieChartProps = {
   data: any;

@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
-import styles from '../../styles/dashboard.module.css'
+import styles from '../../../styles/dashboard.module.css'
 import TvlStackedChart from './TvlStackedChart'
 import TvlPieChart from './TvlPieChart'
 
-export default function DefiTvl({ data }: any) {
+export default function Tvl({ data }: any) {
   // format source data to same length
   const dataSource = useMemo(() => {
     if (Object.keys(data).length === 0) return data

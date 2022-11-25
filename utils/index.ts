@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import { format, addMinutes } from 'date-fns'
 
-export const formatNumber = (num: number, precision: number) => {
+export const formatNumber = (num: number, precision?: number) => {
   if (!num) return num
 
   if (!precision) {
@@ -58,7 +58,7 @@ export const abbrNumber = (num: number) => {
   }
 }
 
-export const getPlatformName = (value: string) => {
+export const getPlatformName = (value: string | undefined) => {
 
   switch (value) {
     case 'whirlpool':

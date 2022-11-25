@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { StackedChart } from '../common';
+import { StackedChart } from '../../common';
 
 type StackedChartProps = {
   dataSource: any;

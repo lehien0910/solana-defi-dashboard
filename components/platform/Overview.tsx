@@ -1,36 +1,33 @@
-import { useMemo } from 'react'
+import { Space } from 'antd'
 import styles from '../../styles/platform.module.css'
 import { abbrNumber, formatNumber } from '../../utils'
+import { UpDown } from '../common'
 
-export default function DefiOverview({ data }: any) {
-  const overviewDexData = useMemo(() => {
-    if (!data) return {}
-
-    return data.reduce((agg: any, curr: any, idx: number) => {
-      if (idx === 0) {
-        agg.numberPairs = curr.numberPairs || 0
-        agg.totalLiquidity = curr.totalLiquidity || 0
-        agg.totalTxs24h = curr.totalTxs24h || 0
-        agg.totalVolume24h = curr.totalVolume24h || 0
-      } else {
-        agg.numberPairs = agg.numberPairs + curr.numberPairs
-        agg.totalLiquidity = agg.totalLiquidity + curr.totalLiquidity
-        agg.totalTxs24h = agg.totalTxs24h + curr.totalTxs24h
-        agg.totalVolume24h = agg.totalVolume24h + curr.totalVolume24h
-      }
-      
-      return agg
-    }, {})
-  }, [data])
+export default function Overview({ data }: any) {
 
   return (
     <div className={styles.overview + " " + styles.feature}>
       <div className={styles.overview_item}>
         <div className={styles.overview_item_title}>
+          Price {data.symbol}
+        </div>
+        <div className={styles.overview_item_content}>
+          <Space>
+            <span>${abbrNumber(data.price) || "__"}</span>
+            <UpDown value={data.priceChange24h} fs="1.14rem" />
+          </Space>
+        </div>
+      </div>
+
+      <div className={styles.overview_item}>
+        <div className={styles.overview_item_title}>
           24h Volume
         </div>
         <div className={styles.overview_item_content}>
-          ${abbrNumber(overviewDexData.totalVolume24h) || "__"}
+          <Space>
+            <span>${abbrNumber(data.totalVolume24h) || "__"}</span>
+            <UpDown value={data.totalVolume24hChangePercentage24h} fs="1.14rem" />
+          </Space>
         </div>
       </div>
 
@@ -39,7 +36,10 @@ export default function DefiOverview({ data }: any) {
           TVL
         </div>
         <div className={styles.overview_item_content}>
-          ${abbrNumber(overviewDexData.totalLiquidity) || "__"}
+          <Space>
+            <span>${abbrNumber(data.totalLiquidity) || "__"}</span>
+            <UpDown value={data.totalLiquidityChangePercentage24h} fs="1.14rem" />
+          </Space>
         </div>
       </div>
 
@@ -57,7 +57,10 @@ export default function DefiOverview({ data }: any) {
           24h Txs
         </div>
         <div className={styles.overview_item_content}>
-          {abbrNumber(overviewDexData.totalTxs24h) || "__"}
+          <Space>
+            <span>{abbrNumber(data.totalTxs24h) || "__"}</span>
+            <UpDown value={data.totalTxsChangePercentage24h} fs="1.14rem" />
+          </Space>
         </div>
       </div>
 
@@ -66,7 +69,7 @@ export default function DefiOverview({ data }: any) {
           Pools
         </div>
         <div className={styles.overview_item_content}>
-          {formatNumber(overviewDexData.numberPairs, 0) || "__"}
+          {formatNumber(data.numberPairs, 0) || "__"}
         </div>
       </div>
     </div>

@@ -52,6 +52,7 @@ a {
   align-items: center;
   justify-content: space-between;
   height: 50px;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .main_logo {

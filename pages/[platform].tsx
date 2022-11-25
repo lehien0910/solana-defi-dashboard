@@ -4,9 +4,10 @@ import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { Select } from 'antd'
 
-import { Layout, UpDown } from '../components/common'
+import { Layout } from '../components/common'
 import styles from '../styles/platform.module.css'
-import { getPlatformName, formatNumber, abbrNumber } from '../utils'
+import { getPlatformName, abbrNumber } from '../utils'
+import Overview from '../components/platform/Overview'
 
 const { Option } = Select
 const fetchPlatformList = () => fetch('https://api.solscan.io/amm/all').then((res) => res.json())
@@ -67,7 +68,9 @@ export default function PlatformDetails() {
             })
           }
         </Select>
-      </div>      
+      </div>
+
+      <Overview data={platformData} />
     </Layout>
   )
 }

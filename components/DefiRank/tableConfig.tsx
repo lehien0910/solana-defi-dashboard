@@ -1,7 +1,8 @@
-import { Space } from "antd";
+import Link from 'next/link'
+import { Space } from "antd"
 
-import { abbrNumber, formatNumber, getPlatformName } from "../../utils";
-import UpDown from "../common/UpDown";
+import { abbrNumber, formatNumber, getPlatformName } from "../../utils"
+import UpDown from "../common/UpDown"
 
 export const columns = [
   {
@@ -21,10 +22,12 @@ export const columns = [
       if (!value) return '__'
 
       return (
-        <Space>
-          <img src={record.icon} alt="" width={20} height={20} />
-          <span style={{textTransform: 'capitalize'}}>{getPlatformName(value)}</span>
-        </Space>
+        <Link href={`/${value}`}>
+          <Space>
+            <img src={record.icon} alt="" width={20} height={20} />
+            <span style={{textTransform: 'capitalize'}}>{getPlatformName(value)}</span>
+          </Space>
+        </Link>
       )
     }
   },

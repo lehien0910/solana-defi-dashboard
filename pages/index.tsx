@@ -1,9 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Space } from 'antd'
 import useSWR from 'swr'
 
 import styles from '../styles/dashboard.module.css'
+import { Layout } from "../components/common";
 import DefiOverview from '../components/DefiOverview'
 import DefiRank from '../components/DefiRank'
 import DefiVolume from '../components/DefiVolume'
@@ -22,14 +21,14 @@ export default function Dashboard() {
   const { data: tvlData } = useSWR('fetchTvlChartData', fetchTvlChartData)
 
   return (
-    <div className={styles.container}>
+    <Layout>
       <Head>
         <title>Defi Dashboard</title>
         <meta name="description" content="Solana DeFi Dashboard" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <>
         <div className={styles.feature_header}>
           <h1 className={styles.title}>
             Defi Dashboard
@@ -43,21 +42,7 @@ export default function Dashboard() {
         <DefiVolume data={chartData?.data?.items || {}} />
 
         <DefiTvl data={tvlData?.data?.items || {}} />
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://solscan.io/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Space>
-            Powered by
-            <Image src="/solscan.png" alt="Solscan Logo" width={20} height={20} />
-            Solscan
-          </Space>
-        </a>
-      </footer>
-    </div>
+      </>
+    </Layout>
   )
 }

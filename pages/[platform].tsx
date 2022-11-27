@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import useSWR from 'swr'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Select } from 'antd'
 
 import { Layout } from '../components/common'
@@ -20,11 +20,12 @@ const fetchVolumeChartData = () => fetch(`https://api.solscan.io/amm/chart?sourc
 const fetchTvlChartData = () => fetch(`https://api.solscan.io/amm/chart?source=all&type=1D&chart=total_tvl&time_from=${from}&time_to=${to}`).then((res) => res.json())
 
 export default function PlatformDetails() {
+  const [otherPlatform, setOtherPlatform] = useState<string[]>([])
   const router = useRouter()
   const { platform } = router.query
   const { data: platformListResult } = useSWR('fetchPlatformList', fetchPlatformList)
   const { data: volumeChartDataResult } = useSWR('fetchVolumeChartData', fetchVolumeChartData)
-  const { data: tvlChartData } = useSWR('fetchTvlChartData', fetchTvlChartData)
+  const { data: tvlChartDataResult } = useSWR('fetchTvlChartData', fetchTvlChartData)
 
   const { platformData, filteredPlatformList } = useMemo(() => {
     if (!platform || !platformListResult?.data) return { platformData: [], filteredPlatformList: [] }
@@ -38,22 +39,40 @@ export default function PlatformDetails() {
   const volumeChartData = useMemo(() => {
     if (!volumeChartDataResult?.data?.items || typeof platform !== "string") return {}
 
-    return {
-      [platform]: [
-        ...volumeChartDataResult?.data?.items[platform]
-      ]
-    }
-  }, [volumeChartDataResult?.data?.items])
+    const platformList = [platform, ...otherPlatform]
 
-  const chartTvlData = useMemo(() => {
-    if (!tvlChartData?.data?.items || typeof platform !== "string") return {}
+    const platformListData =  platformList.reduce((agg: any, curr: any) => {
+      agg = {
+        ...agg,
+        [curr]: volumeChartDataResult.data.items[curr],
+      }
 
-    return {
-      [platform]: [
-        ...tvlChartData?.data?.items[platform]
-      ]
-    }
-  }, [tvlChartData?.data?.items])
+      return agg
+    }, {})
+    
+    return platformListData
+  }, [otherPlatform, platform, volumeChartDataResult?.data?.items])
+
+  const tvlChartData = useMemo(() => {
+    if (!tvlChartDataResult?.data?.items || typeof platform !== "string") return {}
+
+    const platformList = [platform, ...otherPlatform]
+
+    const platformListData =  platformList.reduce((agg: any, curr: any) => {
+      agg = {
+        ...agg,
+        [curr]: tvlChartDataResult.data.items[curr],
+      }
+
+      return agg
+    }, {})
+    
+    return platformListData
+  }, [otherPlatform, platform, tvlChartDataResult?.data?.items])
+
+  const onChange = (val: string[]) => {    
+    setOtherPlatform(val)
+  }
 
   return (
     <Layout>
@@ -75,6 +94,7 @@ export default function PlatformDetails() {
           optionLabelProp="label"
           placeholder="Select to compare"
           size="large"
+          onChange={onChange}
         >
           {
             filteredPlatformList.map((item: any, idx: number) => {
@@ -107,7 +127,7 @@ export default function PlatformDetails() {
 
       <Volume data={volumeChartData || {}} />
 
-      <Tvl data={chartTvlData || {}} />
+      <Tvl data={tvlChartData || {}} />
     </Layout>
   )
 }

@@ -68,16 +68,15 @@
   display: flex;
   gap: 1.14rem;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 2rem;
 }
 
 .overview_item {
-  min-width: 150px;
+  min-width: 220px;
   padding: 0.75rem 1.14rem;
   border: 1px solid #eaeaea;
   border-radius: 5px;
-  flex-grow: 1;
 }
 
 .overview_item_title {
@@ -89,5 +88,10 @@
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.5;
+}
+
+.volume,
+.tvl {
+  height: 400px;
 }
 

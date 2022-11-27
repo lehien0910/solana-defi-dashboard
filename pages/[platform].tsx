@@ -9,6 +9,7 @@ import styles from '../styles/platform.module.css'
 import { getPlatformName, abbrNumber } from '../utils'
 import Overview from '../components/platform/Overview'
 import Volume from '../components/platform/Volume'
+import Tvl from '../components/platform/Tvl'
 
 const to = new Date().getTime() / 1000
 const from = to - 7 * 24 * 60 * 60
@@ -16,12 +17,14 @@ const from = to - 7 * 24 * 60 * 60
 const { Option } = Select
 const fetchPlatformList = () => fetch('https://api.solscan.io/amm/all').then((res) => res.json())
 const fetchVolumeChartData = () => fetch(`https://api.solscan.io/amm/chart?source=all&type=1D&chart=total_volume24h&time_from=${from}&time_to=${to}`).then((res) => res.json())
+const fetchTvlChartData = () => fetch(`https://api.solscan.io/amm/chart?source=all&type=1D&chart=total_tvl&time_from=${from}&time_to=${to}`).then((res) => res.json())
 
 export default function PlatformDetails() {
   const router = useRouter()
   const { platform } = router.query
   const { data: platformListResult } = useSWR('fetchPlatformList', fetchPlatformList)
-  const { data: chartVolumeDataResult } = useSWR('fetchVolumeChartData', fetchVolumeChartData)
+  const { data: volumeChartDataResult } = useSWR('fetchVolumeChartData', fetchVolumeChartData)
+  const { data: tvlChartData } = useSWR('fetchTvlChartData', fetchTvlChartData)
 
   const { platformData, filteredPlatformList } = useMemo(() => {
     if (!platform || !platformListResult?.data) return { platformData: [], filteredPlatformList: [] }
@@ -32,15 +35,25 @@ export default function PlatformDetails() {
     return { platformData, filteredPlatformList }
   }, [platform, platformListResult?.data])
 
-  const chartVolumeData = useMemo(() => {
-    if (!chartVolumeDataResult?.data?.items || typeof platform !== "string") return {}
+  const volumeChartData = useMemo(() => {
+    if (!volumeChartDataResult?.data?.items || typeof platform !== "string") return {}
 
     return {
       [platform]: [
-        ...chartVolumeDataResult?.data?.items[platform]
+        ...volumeChartDataResult?.data?.items[platform]
       ]
     }
-  }, [chartVolumeDataResult?.data?.items])
+  }, [volumeChartDataResult?.data?.items])
+
+  const chartTvlData = useMemo(() => {
+    if (!tvlChartData?.data?.items || typeof platform !== "string") return {}
+
+    return {
+      [platform]: [
+        ...tvlChartData?.data?.items[platform]
+      ]
+    }
+  }, [tvlChartData?.data?.items])
 
   return (
     <Layout>
@@ -92,7 +105,9 @@ export default function PlatformDetails() {
 
       <Overview data={platformData} />
 
-      <Volume data={chartVolumeData || {}} />
+      <Volume data={volumeChartData || {}} />
+
+      <Tvl data={chartTvlData || {}} />
     </Layout>
   )
 }

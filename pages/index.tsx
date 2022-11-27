@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import useSWR from 'swr'
 
-import styles from '../styles/dashboard.module.css'
 import { Layout } from "../components/common";
 import Overview from '../components/dashboard/Overview'
 import Ranking from '../components/dashboard/Ranking'

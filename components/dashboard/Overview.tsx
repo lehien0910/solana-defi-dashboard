@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import styles from '../../styles/dashboard.module.css'
 import { abbrNumber, formatNumber } from '../../utils'
 
-export default function DefiOverview({ data }: any) {
+export default function Overview({ data }: any) {
   const overviewDexData = useMemo(() => {
     if (!data) return {}
 

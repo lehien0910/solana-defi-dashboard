@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
-import styles from '../../../styles/dashboard.module.css'
+import styles from '../../../styles/platform.module.css'
 import VolumeStackedChart from './VolumeStackedChart'
-import VolumePieChart from './VolumePieChart'
 
 export default function Volume({ data }: any) {
   // format source data to same length
@@ -45,13 +44,7 @@ export default function Volume({ data }: any) {
       </div>
 
       <div className={styles.volume}>
-        <div className={styles.volume_left_wrapper}>
-
-          <VolumeStackedChart dataSource={dataSource} />
-        </div>
-        <div className={styles.volume_right_wrapper}>
-          <VolumePieChart data={dataSource} />
-        </div>
+        <VolumeStackedChart dataSource={dataSource} />
       </div>
     </div>
   )

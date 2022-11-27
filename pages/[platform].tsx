@@ -8,14 +8,20 @@ import { Layout } from '../components/common'
 import styles from '../styles/platform.module.css'
 import { getPlatformName, abbrNumber } from '../utils'
 import Overview from '../components/platform/Overview'
+import Volume from '../components/platform/Volume'
+
+const to = new Date().getTime() / 1000
+const from = to - 7 * 24 * 60 * 60
 
 const { Option } = Select
 const fetchPlatformList = () => fetch('https://api.solscan.io/amm/all').then((res) => res.json())
+const fetchVolumeChartData = () => fetch(`https://api.solscan.io/amm/chart?source=all&type=1D&chart=total_volume24h&time_from=${from}&time_to=${to}`).then((res) => res.json())
 
 export default function PlatformDetails() {
   const router = useRouter()
   const { platform } = router.query
   const { data: platformListResult } = useSWR('fetchPlatformList', fetchPlatformList)
+  const { data: chartVolumeDataResult } = useSWR('fetchVolumeChartData', fetchVolumeChartData)
 
   const { platformData, filteredPlatformList } = useMemo(() => {
     if (!platform || !platformListResult?.data) return { platformData: [], filteredPlatformList: [] }
@@ -25,6 +31,16 @@ export default function PlatformDetails() {
 
     return { platformData, filteredPlatformList }
   }, [platform, platformListResult?.data])
+
+  const chartVolumeData = useMemo(() => {
+    if (!chartVolumeDataResult?.data?.items || typeof platform !== "string") return {}
+
+    return {
+      [platform]: [
+        ...chartVolumeDataResult?.data?.items[platform]
+      ]
+    }
+  }, [chartVolumeDataResult?.data?.items])
 
   return (
     <Layout>
@@ -45,6 +61,7 @@ export default function PlatformDetails() {
           mode="multiple"
           optionLabelProp="label"
           placeholder="Select to compare"
+          size="large"
         >
           {
             filteredPlatformList.map((item: any, idx: number) => {
@@ -74,6 +91,8 @@ export default function PlatformDetails() {
       </div>
 
       <Overview data={platformData} />
+
+      <Volume data={chartVolumeData || {}} />
     </Layout>
   )
 }

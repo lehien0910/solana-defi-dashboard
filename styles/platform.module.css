@@ -50,11 +50,26 @@
   border-radius: 5px;
 }
 
+.feature {
+  margin-bottom: 2rem;
+}
+
+.feature_header {
+  margin-bottom: 1.14rem;
+}
+
+.feature_title {
+  margin: 0;
+  line-height: 1;
+  font-size: 1.7rem;
+}
+
 .overview {
   display: flex;
   gap: 1.14rem;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 .overview_item {
@@ -75,3 +90,4 @@
   font-weight: 700;
   line-height: 1.5;
 }
+

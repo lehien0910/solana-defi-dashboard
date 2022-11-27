@@ -41,7 +41,7 @@ export default function Tvl({ data }: any) {
   return (
     <div className={styles.feature}>
       <div className={styles.feature_header}>
-        <h2 className={styles.feature_title}>TVL</h2>
+        <h2 className={styles.feature_title}>TVL (7D)</h2>
       </div>
 
       <div className={styles.volume}>

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
-import { getPlatformName } from '../../utils';
+import { formatNumber } from '../../utils';
 
 type PieChartProps = {
   dataSource: any;
@@ -13,16 +13,13 @@ export default function PieChart({ dataSource, name }: PieChartProps) {
     return {
       tooltip: {
         trigger: 'item',
-        formatter: '{a} <br/>{b} : {c} ({d}%)'
+        formatter: (params: any) => {          
+          return `
+            ${params.name} <br />
+            <strong>${params.seriesName?.toLowerCase()?.includes('volume') ? '$' : ''}${formatNumber(params.value, 2)} (${params.percent}%)</strong>
+          `
+        },
       },
-      // legend: {
-      //   type: 'scroll',
-      //   orient: 'vertical',
-      //   right: 0,
-      //   top: 30,
-      //   bottom: 30,
-      //   data: dataSource.legendData
-      // },
       series: [
         {
           name,

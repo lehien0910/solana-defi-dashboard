@@ -3,7 +3,7 @@ import ReactECharts from 'echarts-for-react'
 import { Radio, Tooltip } from 'antd'
 import { AreaChartOutlined, BarChartOutlined, LineChartOutlined } from '@ant-design/icons'
 
-import { formatTimestamp } from '../../utils'
+import { formatNumber, formatTimestamp } from '../../utils'
 
 type StackedChartProps = {
   dataSource: any;
@@ -39,7 +39,8 @@ export default function StackedChart({
         trigger: 'axis',
         axisPointer: {
           type: 'shadow'
-        }
+        },
+        valueFormatter: (value: number) => formatNumber(value, 2),
       },
       legend: { },
       grid: {

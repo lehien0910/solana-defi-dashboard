@@ -71,7 +71,7 @@ a {
 }
 
 .main_content {
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 140px);
   padding: 1.8rem 0;
 }
 

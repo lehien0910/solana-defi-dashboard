@@ -59,15 +59,22 @@ export const abbrNumber = (num: number) => {
 }
 
 export const getPlatformName = (value: string | undefined) => {
+  if (!value) return value
+
+  let name = value
 
   switch (value) {
     case 'whirlpool':
-      return 'orca'
+      name = 'orca'
+      break
   
     case 'orca':
-      return 'orca legacy'
+      name = 'orca legacy'
+      break
 
     default:
-      return value
+      name = value
   }
+
+  return name.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())
 }

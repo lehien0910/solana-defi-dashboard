@@ -31,7 +31,9 @@ export default function PlatformDetails() {
     if (!platform || !platformListResult?.data) return { platformData: [], filteredPlatformList: [] }
 
     const platformData = platformListResult.data.find((item: any) => item.source?.toLowerCase() === platform)
-    const filteredPlatformList = platformListResult.data.filter((item: any) => item.source?.toLowerCase() !== platform)
+    const filteredPlatformList = platformListResult.data
+      .filter((item: any) => item.source?.toLowerCase() !== platform)
+      .sort((a: any, b: any) => b.totalVolume24h - a.totalVolume24h)
 
     return { platformData, filteredPlatformList }
   }, [platform, platformListResult?.data])

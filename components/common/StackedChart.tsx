@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
-import { Radio } from 'antd'
+import { Radio, Tooltip } from 'antd'
 import { AreaChartOutlined, BarChartOutlined, LineChartOutlined } from '@ant-design/icons'
 
 import { formatTimestamp } from '../../utils'
@@ -11,16 +11,20 @@ type StackedChartProps = {
   types?: string[];
 }
 
-const ChartIcon = (type: string) => {
+type ChartIconProps = {
+  type: string;
+}
+
+const ChartIcon = ({ type }: ChartIconProps) => {
   switch (type) {
     case 'area':
-      return <AreaChartOutlined />
+      return <Tooltip title="Area chart"><AreaChartOutlined /></Tooltip>
     case 'bar':
-      return <BarChartOutlined />
+      return <Tooltip title="Bar chart"><BarChartOutlined /></Tooltip>
     case 'line':
-      return <LineChartOutlined />
+      return <Tooltip title="Line chart"><LineChartOutlined /></Tooltip>
     default:
-      return type
+      return <>type</>
   }
 }
 
@@ -63,10 +67,10 @@ export default function StackedChart({
 
   return (
     <div>
-      <Radio.Group onChange={e => setType(e.target.value)}>
+      <Radio.Group size="small" onChange={e => setType(e.target.value)}>
         {
           types.map((type: string) => {
-            return <Radio.Button key={type} value={type}>{type}</Radio.Button>
+            return <Radio.Button key={type} value={type}><ChartIcon type={type} /></Radio.Button>
           })
         }
       </Radio.Group>

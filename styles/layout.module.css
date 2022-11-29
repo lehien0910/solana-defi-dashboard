@@ -1,0 +1,31 @@
+.main_nav {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.select {
+  min-width: 300px;
+}
+
+.select :global(.ant-select-selector) {
+  padding-right: 35px;
+  border-width: 2px !important;
+  border-radius: 5px !important;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.option_title {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.option_sub_title {
+  font-size: .95rem;
+}

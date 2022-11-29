@@ -8,7 +8,7 @@ export default function Tvl({ data }: any) {
     if (Object.keys(data).length === 0) return data
 
     const normalSource: any = Object.values(data).reduce((agg: any, curr: any, index: number) => {
-      if (agg.length < curr.length) {        
+      if (agg.length < curr?.length) {        
         agg.length = curr.length
         agg.source = curr[0].source
       }

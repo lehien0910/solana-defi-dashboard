@@ -36,7 +36,7 @@ export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
         seriesItemData.areaStyle = {}
       }
 
-      for (let j = 0; j < xAxisData.length; j++) {
+      for (let j = 0; j < xAxisData?.length; j++) {
         if (dataSource[name][j]?.unixTime === xAxisData[j]) {
           seriesItemData.data.push(dataSource[name][j].value)
         } else {

@@ -91,7 +91,7 @@ export default function PlatformDetails() {
           <img className={styles.logo} src={platformData?.icon} alt="" width={30} height={30} />
           <span>{getPlatformName(platform)}</span>
         </h1>
-        <span className={styles.vs}>vs</span>
+        <span className={styles.vs}>VS</span>
         <Select
           className={styles.select}
           mode="multiple"

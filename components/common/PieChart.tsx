@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import ReactECharts from 'echarts-for-react'
-import { formatNumber } from '../../utils';
+import { formatNumber } from '../../utils'
 
 type PieChartProps = {
   dataSource: any;

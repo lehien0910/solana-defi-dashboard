@@ -36,7 +36,7 @@ export default function TvlStackedChart({ dataSource }: StackedChartProps) {
       }
 
       for (let j = 0; j < xAxisData?.length; j++) {
-        if (dataSource[name][j]?.unixTime === xAxisData[j]) {
+        if (dataSource[name] && (dataSource[name][j]?.unixTime === xAxisData[j])) {
           seriesItemData.data.push(dataSource[name][j].value)
         } else {
           seriesItemData.data.push(0)

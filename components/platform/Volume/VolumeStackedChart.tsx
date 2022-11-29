@@ -20,6 +20,8 @@ export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
 
     for (let i = 0; i < Object.keys(dataSource).length; i++) {
       const name = Object.keys(dataSource)[i]
+      console.log(dataSource, name);
+      
       
       const seriesItemData: any = {
         name: getPlatformName(name),
@@ -37,7 +39,7 @@ export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
       }
 
       for (let j = 0; j < xAxisData?.length; j++) {
-        if (dataSource[name][j]?.unixTime === xAxisData[j]) {
+        if (dataSource[name] && (dataSource[name][j]?.unixTime === xAxisData[j])) {
           seriesItemData.data.push(dataSource[name][j].value)
         } else {
           seriesItemData.data.push(0)

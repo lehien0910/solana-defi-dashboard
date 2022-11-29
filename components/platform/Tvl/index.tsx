@@ -20,7 +20,8 @@ export default function Tvl({ data }: any) {
 
     for (let i = 0; i < Object.keys(data).length; i++) {
       const name = Object.keys(data)[i]
-      const length = [...data[name]].length
+      const platformData = data[name] || []
+      const length = [...platformData].length
 
       if (length < normalSource.length) {
         for (let j = 0; j < normalSource.length - length; j++) {
@@ -29,7 +30,7 @@ export default function Tvl({ data }: any) {
             value: 0,
           }
 
-          data[name].unshift(tick)
+          platformData.unshift(tick)
         }
       }
     }

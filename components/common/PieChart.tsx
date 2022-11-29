@@ -16,7 +16,7 @@ export default function PieChart({ dataSource, name }: PieChartProps) {
         formatter: (params: any) => {          
           return `
             ${params.name} <br />
-            <strong>${params.seriesName?.toLowerCase()?.includes('volume') ? '$' : ''}${formatNumber(params.value, 2)} (${params.percent}%)</strong>
+            <strong>${params.seriesName?.toLowerCase()?.includes('volume') || params.seriesName?.toLowerCase()?.includes('tvl')  ? '$' : ''}${formatNumber(params.value, 2)} (${params.percent}%)</strong>
           `
         },
       },

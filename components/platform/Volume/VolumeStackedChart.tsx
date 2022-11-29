@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+
+import { getPlatformName } from '../../../utils';
 import { StackedChart } from '../../common';
 
 type StackedChartProps = {
@@ -6,7 +8,7 @@ type StackedChartProps = {
 }
 
 export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
-  const [type, setType] = useState<'bar' | 'line'>('line')
+  const [type, setType] = useState<'bar' | 'line' | 'area'>('line')
 
   const parsedData = useMemo(() => {
     const xAxisData = Object.values(dataSource)[0]?.reduce((agg: any, curr: any) => {
@@ -20,7 +22,7 @@ export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
       const name = Object.keys(dataSource)[i]
       
       const seriesItemData: any = {
-        name,
+        name: getPlatformName(name),
         type,
         // stack: 'dex',
         emphasis: {

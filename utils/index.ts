@@ -62,10 +62,10 @@ export const getPlatformName = (value: string | undefined) => {
 
   switch (value) {
     case 'whirlpool':
-      return 'Orca'
+      return 'orca'
   
     case 'orca':
-      return 'Orca Legacy'
+      return 'orca legacy'
 
     default:
       return value

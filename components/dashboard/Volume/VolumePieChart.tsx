@@ -1,4 +1,6 @@
 import { useMemo } from 'react'
+
+import { getPlatformName } from '../../../utils'
 import { PieChart } from '../../common'
 
 export default function VolumePieChart({ data }: any) {
@@ -9,7 +11,7 @@ export default function VolumePieChart({ data }: any) {
       agg = [
         ...agg,
         {
-          name: curr[lastIndex].source,
+          name: getPlatformName(curr[lastIndex].source),
           value: curr[lastIndex].value
         }
       ]
@@ -18,7 +20,7 @@ export default function VolumePieChart({ data }: any) {
     }, [])
 
     const seriesData = aggData.sort((a: any, b: any) => b.value - a.value)
-    const legendData = aggData.map((item: any) => item.name)
+    const legendData = aggData.map((item: any) => getPlatformName(item.name))
 
     return { legendData, seriesData }
   }, [data])

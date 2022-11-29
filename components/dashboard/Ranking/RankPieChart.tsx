@@ -1,4 +1,6 @@
 import { useMemo } from 'react'
+
+import { getPlatformName } from '../../../utils';
 import { PieChart } from '../../common'
 
 type RankPieChartProps = {
@@ -17,7 +19,7 @@ export default function RankPieChart({ data, fieldInfo }: RankPieChartProps) {
       agg.seriesData = [
         ...agg.seriesData,
         {
-          name: curr.source,
+          name: getPlatformName(curr.source),
           value: curr[fieldInfo.value]
         }
       ]

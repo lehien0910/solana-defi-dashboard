@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react'
+
+import { getPlatformName } from '../../../utils';
 import { StackedChart } from '../../common';
 
 type StackedChartProps = {
@@ -20,7 +22,7 @@ export default function TvlStackedChart({ dataSource }: StackedChartProps) {
       const name = Object.keys(dataSource)[i]
       
       const seriesItemData: any = {
-        name,
+        name: getPlatformName(name),
         type,
         stack: 'dex',
         emphasis: {

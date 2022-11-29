@@ -19,9 +19,7 @@ export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
     const seriesData: any = []
 
     for (let i = 0; i < Object.keys(dataSource).length; i++) {
-      const name = Object.keys(dataSource)[i]
-      console.log(dataSource, name);
-      
+      const name = Object.keys(dataSource)[i]      
       
       const seriesItemData: any = {
         name: getPlatformName(name),

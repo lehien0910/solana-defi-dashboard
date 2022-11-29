@@ -75,7 +75,7 @@ export default function StackedChart({
           })
         }
       </Radio.Group>
-      <ReactECharts option={options} opts={{ height: 350 }} />
+      <ReactECharts option={options} opts={{ height: 350 }} notMerge={true} />
     </div>
   )
 }

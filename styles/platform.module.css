@@ -21,6 +21,8 @@
 
 .select :global(.ant-select-selector) {
   padding-right: 35px;
+  border-color: #ff9800 !important;
+  border-width: 2px !important;
   border-radius: 5px !important;
 }
 

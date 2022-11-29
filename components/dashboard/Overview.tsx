@@ -52,14 +52,14 @@ export default function Overview({ data }: any) {
         </div>
       </div>
 
-      <div className={styles.overview_item}>
+      {/* <div className={styles.overview_item}>
         <div className={styles.overview_item_title}>
           24h Active User
         </div>
         <div className={styles.overview_item_content}>
           __
         </div>
-      </div>
+      </div> */}
 
       <div className={styles.overview_item}>
         <div className={styles.overview_item_title}>

@@ -70,14 +70,16 @@ export default function PlatformDetails() {
     return platformListData
   }, [otherPlatform, platform, tvlChartDataResult?.data?.items])
 
-  const onChange = (val: string[]) => {    
+  const onChange = (val: string[]) => {
+    if (val.length > 2) return;
+
     setOtherPlatform(val)
   }
 
   return (
     <Layout>
       <Head>
-        <title>{`${getPlatformName(platform)} | Defi Terminal` || 'Defi Terminal'}</title>
+        <title>{getPlatformName(platform) ? `${getPlatformName(platform)} | Defi Terminal` : 'Defi Terminal'}</title>
         <meta name="description" content="DeFi Terminal" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -94,6 +96,7 @@ export default function PlatformDetails() {
           optionLabelProp="label"
           placeholder="Select to compare"
           size="large"
+          value={otherPlatform}
           onChange={onChange}
         >
           {
@@ -108,6 +111,7 @@ export default function PlatformDetails() {
                       <span className="capitalize">{getPlatformName(item.source)}</span>
                     </div>
                   }
+                  disable={true}
                 >
                   <div className={styles.option}>
                     <div className={styles.option_title}>

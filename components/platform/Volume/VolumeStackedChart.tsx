@@ -6,7 +6,7 @@ type StackedChartProps = {
 }
 
 export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
-  const [type, setType] = useState<'bar' | 'area'>('area')
+  const [type, setType] = useState<'bar' | 'line'>('line')
 
   const parsedData = useMemo(() => {
     const xAxisData = Object.values(dataSource)[0]?.reduce((agg: any, curr: any) => {
@@ -22,7 +22,7 @@ export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
       const seriesItemData: any = {
         name,
         type,
-        stack: 'dex',
+        // stack: 'dex',
         emphasis: {
           focus: 'series'
         },
@@ -55,6 +55,10 @@ export default function VolumeStackedChart({ dataSource }: StackedChartProps) {
   }, [type, dataSource])
 
   return (
-    <StackedChart dataSource={parsedData} setType={setType} />
+    <StackedChart
+      dataSource={parsedData}
+      setType={setType}
+      types={['line', 'bar']}
+    />
   )
 }

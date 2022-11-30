@@ -11,6 +11,7 @@ export default function TvlStackedChart({ dataSource }: StackedChartProps) {
   const [type, setType] = useState<'bar' | 'area'>('bar')
 
   const parsedData = useMemo(() => {
+    // @ts-ignore
     const xAxisData = Object.values(dataSource)[0]?.reduce((agg: any, curr: any) => {
       agg = [...agg, curr.unixTime]
       return agg

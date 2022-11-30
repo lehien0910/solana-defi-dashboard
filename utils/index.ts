@@ -58,10 +58,10 @@ export const abbrNumber = (num: number) => {
   }
 }
 
-export const getPlatformName = (value: string | undefined) => {
+export const getPlatformName = (value: any) => {
   if (!value) return value
 
-  let name = value
+  let name: string = value.toString()
 
   switch (value) {
     case 'whirlpool':

@@ -43,7 +43,7 @@ export default function Layout({ children }: any) {
             optionFilterProp="children"
             onChange={onChange}
             filterOption={(input, option) =>
-              (option?.value ?? '').toLowerCase().includes(input.toLowerCase())
+              (option?.value ?? '')?.toString().toLowerCase().includes(input.toLowerCase())
             }
           >
             {

@@ -1,4 +1,6 @@
 import { useMemo } from 'react'
+import { Row, Col } from 'antd'
+
 import styles from '../../../styles/dashboard.module.css'
 import TvlStackedChart from './TvlStackedChart'
 import TvlPieChart from './TvlPieChart'
@@ -44,14 +46,19 @@ export default function Tvl({ data }: any) {
         <h2 className={styles.feature_title}>TVL (7D)</h2>
       </div>
 
-      <div className={styles.volume}>
-        <div className={styles.volume_left_wrapper}>
-
-          <TvlStackedChart dataSource={dataSource} />
-        </div>
-        <div className={styles.volume_right_wrapper}>
-          <TvlPieChart data={dataSource} />
-        </div>
+      <div>
+        <Row>
+          <Col xl={14} span={24}>
+            <div className={styles.volume_left_wrapper}>
+              <TvlStackedChart dataSource={dataSource} />
+            </div>
+          </Col>
+          <Col xl={10} span={24}>
+            <div className={styles.volume_right_wrapper}>
+              <TvlPieChart data={dataSource} />
+            </div>
+          </Col>
+        </Row>
       </div>
     </div>
   )

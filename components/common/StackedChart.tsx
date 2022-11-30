@@ -44,7 +44,7 @@ export default function StackedChart({
       },
       legend: { },
       grid: {
-        top: '12%',
+        top: '20%',
         left: '0',
         right: '0',
         bottom: '5%',
@@ -68,13 +68,15 @@ export default function StackedChart({
 
   return (
     <div>
-      <Radio.Group size="small" onChange={e => setType(e.target.value)}>
-        {
-          types.map((type: string) => {
-            return <Radio.Button key={type} value={type}><ChartIcon type={type} /></Radio.Button>
-          })
-        }
-      </Radio.Group>
+      <div style={{display: "flex", justifyContent: "flex-end", marginBottom: "16px"}}>
+        <Radio.Group size="small" onChange={e => setType(e.target.value)}>
+          {
+            types.map((type: string) => {
+              return <Radio.Button key={type} value={type}><ChartIcon type={type} /></Radio.Button>
+            })
+          }
+        </Radio.Group>
+      </div>
       <ReactECharts option={options} opts={{ height: 350 }} notMerge={true} />
     </div>
   )

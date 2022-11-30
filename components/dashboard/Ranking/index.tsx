@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Table } from 'antd'
+import { Table, Row, Col } from 'antd'
 
 import styles from '../../../styles/dashboard.module.css'
 import { columns } from './tableConfig'
@@ -51,19 +51,25 @@ export default function Ranking({ data = [] }: any) {
         <h2 className={styles.feature_title}>Ranking by <span style={{color: "#4caf50"}}>{RANKING_FIELD[field].title}</span></h2>
       </div>
 
-      <div className={styles.ranking}>
-        <div className={styles.ranking_left_wrapper}>
-          <Table
-            dataSource={parsedData}
-            columns={columns}
-            pagination={false}
-            onChange={handleTableChange}
-          />
-        </div>
-        <div className={styles.ranking_right_wrapper}>  
-          <RankPieChart data={parsedData} fieldInfo={RANKING_FIELD[field]} />
-          <div className={styles.pie_chart_title}>{RANKING_FIELD[field].title} (%)</div>
-        </div>
+      <div>
+        <Row>
+          <Col xl={14} span={24}>
+            <div className={styles.ranking_left_wrapper}>
+              <Table
+                dataSource={parsedData}
+                columns={columns}
+                pagination={false}
+                onChange={handleTableChange}
+              />
+            </div>
+          </Col>
+          <Col xl={10} span={24}>
+            <div className={styles.ranking_right_wrapper}>  
+              <RankPieChart data={parsedData} fieldInfo={RANKING_FIELD[field]} />
+              <div className={styles.pie_chart_title}>{RANKING_FIELD[field].title} (%)</div>
+            </div>
+          </Col>
+        </Row>
       </div>
     </div>
   )
